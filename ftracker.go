@@ -139,7 +139,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	}
 
 	return (walkingCaloriesWeightMultiplier*weight +
-		(math.Pow(meanSpeed(action, duration)*kmhInMsec, 2)/(height*cmInM))*
+		(math.Pow(meanSpeed(action, duration)*kmhInMsec, 2)/(height/cmInM))*
 			walkingSpeedHeightMultiplier*weight) * duration * minInH
 }
 
@@ -194,6 +194,6 @@ func SwimmingSpentCalories(lengthPool, countPool int, duration, weight float64) 
 		return 0
 	}
 
-	return (swimmingMeanSpeed(lengthPool, countPool, duration) * swimmingCaloriesMeanSpeedShift) *
+	return (swimmingMeanSpeed(lengthPool, countPool, duration) + swimmingCaloriesMeanSpeedShift) *
 		swimmingCaloriesWeightMultiplier * weight * duration
 }
